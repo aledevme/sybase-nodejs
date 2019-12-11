@@ -8,7 +8,7 @@ controller.logIn = (req,res) => {
     const data = fs.readFileSync(dbWeeding);
     const items = JSON.parse(data)
     const result  = items.users.find(users => users.id === 9)
-    res.send(result)
+    res.send('Hola')
 }
 
 module.exports = controller
