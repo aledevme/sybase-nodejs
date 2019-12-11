@@ -6,7 +6,7 @@ const bodyparser = require('body-parser');
 const port = process.env.PORT || 3000
 //objects routes
 const weddings = require('./routes/weddings')
-const employee = require('./routes/weddings')
+const employee = require('./routes/employee')
 
 app.use(cors())
 app.use(bodyparser.json()); 
