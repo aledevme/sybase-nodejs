@@ -6,8 +6,8 @@ controller.all = (req,res) => {
     const data = fs.readFileSync(dbWeeding);
     const result = JSON.parse(data)
     res.send({
-        weedings:result,
-        count:result.length
+        data:result,
+        count:result.length 
     });
 }
 controller.create = (req,res) =>{
