@@ -1,6 +1,6 @@
 const controller = {}
 //database utils
-const dbWeeding = './db/employee.json'
+const dbWeeding = './db/employees.json'
 const fs = require('fs')
 
 //actions
