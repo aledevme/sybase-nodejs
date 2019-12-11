@@ -4,7 +4,11 @@ const fs = require('fs')
 
 controller.all = (req,res) => {
     const data = fs.readFileSync(dbWeeding);
-    res.send(JSON.parse(data));
+    const result = JSON.parse(data)
+    res.send({
+        weedings:result,
+        count:result.length
+    });
 }
 controller.create = (req,res) =>{
     let student = { 
@@ -24,6 +28,10 @@ controller.findOne = (req,res) =>{
     res.send({
         data : result.weddings.find(wedding => wedding.id === parseInt(req.params.id))
     })
+}
+controller.countWeddings = (req,res) =>{
+    const data = fs.readFileSync(dbWeeding);
+    res.send(data.length)
 }
 
 module.exports = controller
