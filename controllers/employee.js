@@ -7,7 +7,7 @@ const fs = require('fs')
 controller.logIn = (req,res) => {
     const data = fs.readFileSync(dbWeeding);
     const items = JSON.parse(data)
-    const result  = items.users.find(users => users.id === parseInt(req.body))
+    const result  = items.users.find(users => users.id === parseInt(req.body.userId))
     if(result){
         res.send({
             code:200,
