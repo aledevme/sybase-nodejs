@@ -5,10 +5,18 @@ const fs = require('fs')
 controller.all = (req,res) => {
     const data = fs.readFileSync(dbWeeding);
     const result = JSON.parse(data)
-    res.send({
-        data:result,
-        count:result.length 
-    });
+    if(result.weddings.length > 0){
+        res.send({
+            code:200,
+            data:result,
+            count:result.weddings.length
+        });
+    }else{
+        res.send({
+            code:404,
+            data:'No weddings',
+        });
+    }
 }
 controller.create = (req,res) =>{
     let student = { 
