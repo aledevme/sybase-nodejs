@@ -1,12 +1,12 @@
-const dbWeeding = './db/weddings.json'
 const controller = {};
+const dbWeeding = './db/weddings.json'
 const fs = require('fs')
 
-controller.allWeedings = (req,res) => {
+controller.all = (req,res) => {
     const data = fs.readFileSync(dbWeeding);
     res.send(JSON.parse(data));
 }
-controller.createWeeding = (req,res) =>{
+controller.create = (req,res) =>{
     let student = { 
         name: 'Mike',
         age: 23, 
@@ -18,7 +18,7 @@ controller.createWeeding = (req,res) =>{
     let data = JSON.stringify(student);
     fs.writeFileSync('student-2.json', data);
 }
-controller.findWeeding = (req,res) =>{
+controller.findOne = (req,res) =>{
     const data = fs.readFileSync(dbWeeding);
     const result = JSON.parse(data)
     res.send({
