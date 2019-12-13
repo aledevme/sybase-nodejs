@@ -74,7 +74,7 @@ controller.findProduct = (req,res) =>{
     }
 }
 controller.search = (req, res) =>{
-    var lastname =req.body.lastname
+    var lastname = req.body
     const data = fs.readFileSync(dbWeeding);
     const result = JSON.parse(data)
     var information 
@@ -84,10 +84,11 @@ controller.search = (req, res) =>{
             information = json
         }
     })
+    
 
     if(information){
         res.send({
-            code:202,
+            code:200,
             data:information
         })
     }else{
