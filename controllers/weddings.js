@@ -45,13 +45,30 @@ controller.countWeddings = (req,res) =>{
 controller.findProduct = (req,res) =>{
     const data = fs.readFileSync(dbWeeding);
     const result = JSON.parse(data)
+    var products = [];
     result.weddings.map((json)=>{
-        json.products.find((element)=>{
-            if(element.id == 3){
-                res.send(element)
-            }
-        })
+        if(json.id == req.params.idwedding){
+            json.products.find((element)=>{
+                if(element.id == req.params.idproduct){
+                    products = element
+                }
+            })
+        }
     })
+
+    
+    if(products){
+        res.json({
+            code:200,
+            data:products
+        })
+    }
+    else{
+        res.json({
+            code:404,
+            data:'Not found'
+        })
+    }
     
 }
 controller.search = (req, res) =>{
