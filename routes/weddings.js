@@ -6,10 +6,10 @@ const wedding = require('../controllers/weddings');
 router
 //get request
 .get('/',wedding.all)
-.get('/search',wedding.search)
 .get('/:id', wedding.findOne)
-.patch('/:idwedding/products/:idproduct',wedding.findProduct)
 //post request
 .post('/',wedding.create)
-
+.post('/search',wedding.search)
+//patch request
+.patch('/:idwedding/products/:idproduct',wedding.findProduct)
 module.exports = router

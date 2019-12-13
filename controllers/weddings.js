@@ -42,10 +42,13 @@ controller.countWeddings = (req,res) =>{
     const data = fs.readFileSync(dbWeeding);
     res.send(data.length)
 }
+
 controller.findProduct = (req,res) =>{
     const data = fs.readFileSync(dbWeeding);
     const result = JSON.parse(data)
+
     var products = [];
+    
     result.weddings.map((json)=>{
         if(json.id == req.params.idwedding){
             json.products.find((element)=>{
@@ -69,15 +72,33 @@ controller.findProduct = (req,res) =>{
             data:'Not found'
         })
     }
-    
 }
 controller.search = (req, res) =>{
-    var expres= 'C'
+    var lastname =req.body.lastname
     const data = fs.readFileSync(dbWeeding);
     const result = JSON.parse(data)
+    var information 
+
+    result.weddings.map((json)=>{
+        if(lastname == json.lastnameBoyFriend){
+            information = json
+        }
+    })
+
+    if(information){
+        res.send({
+            code:202,
+            data:information
+        })
+    }else{
+        res.send({
+            code:404,
+            data:'Not found'
+        })
+    }
+
+
     
-    const find = result.weddings.find(wedding => wedding.lastnameBoyFriend == String('Gonzalez'))
-    console.log(find)
 }
 
 module.exports = controller
