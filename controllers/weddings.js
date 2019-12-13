@@ -75,17 +75,20 @@ controller.findProduct = (req,res) =>{
 }
 controller.search = (req, res) =>{
     var lastname = req.body.lastname
+
+    console.log(lastnameBoyFriend)
     const data = fs.readFileSync(dbWeeding);
     const result = JSON.parse(data)
     var information 
-
     result.weddings.map((json)=>{
         if(lastname == json.lastnameBoyFriend){
             information = json
+            console.log(json)
         }
     })
     
-
+    
+    console.log(information)
     if(information){
         res.send({
             code:200,
