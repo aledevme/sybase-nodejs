@@ -5,6 +5,7 @@ const fs = require('fs')
 controller.all = (req,res) => {
     const data = fs.readFileSync(dbWeeding);
     const result = JSON.parse(data)
+    console.log(result)
     if(result.weddings.length > 0){
         res.send({
             code:200,
@@ -40,6 +41,26 @@ controller.findOne = (req,res) =>{
 controller.countWeddings = (req,res) =>{
     const data = fs.readFileSync(dbWeeding);
     res.send(data.length)
+}
+controller.findProduct = (req,res) =>{
+    const data = fs.readFileSync(dbWeeding);
+    const result = JSON.parse(data)
+    result.weddings.map((json)=>{
+        json.products.find((element)=>{
+            if(element.id == 3){
+                res.send(element)
+            }
+        })
+    })
+    
+}
+controller.search = (req, res) =>{
+    var expres= 'C'
+    const data = fs.readFileSync(dbWeeding);
+    const result = JSON.parse(data)
+    
+    const find = result.weddings.find(wedding => wedding.lastnameBoyFriend == String('Gonzalez'))
+    console.log(find)
 }
 
 module.exports = controller

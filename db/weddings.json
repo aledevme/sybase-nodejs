@@ -21,6 +21,12 @@
             ],
             "products":[
                 { 
+                    "id":1,
+                    "code":45678,
+                    "name":"vasija"
+                },
+                { 
+                    "id":17,
                     "code":45678,
                     "name":"vasija"
                 }
@@ -48,6 +54,7 @@
             ],
             "products":[
                 { 
+                    "id":3,
                     "code":45678,
                     "name":"vasija"
                 }
@@ -75,6 +82,7 @@
             ],
             "products":[
                 { 
+                    "id":5,
                     "code":45678,
                     "name":"vasija"
                 }
@@ -102,6 +110,7 @@
             ],
             "products":[
                 { 
+                    "id":8,
                     "code":45678,
                     "name":"vasija"
                 }
@@ -124,6 +133,7 @@
             ],
             "products":[
                 { 
+                    "id":6,
                     "code":123456,
                     "name":"Centro de mesa"
                 }
@@ -146,6 +156,7 @@
             ],
             "products":[
                 { 
+                    "id":7,
                     "code":456789,
                     "name":"Silla"
                 }
