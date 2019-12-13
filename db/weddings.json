@@ -23,12 +23,14 @@
                 { 
                     "id":1,
                     "code":45678,
-                    "name":"vasija"
+                    "name":"vasija",
+                    "count":1
                 },
                 { 
                     "id":17,
                     "code":45678,
-                    "name":"Lapicero"
+                    "name":"Lapicero",
+                    "count":3
                 }
             ],
             "email":"alexgve7@gmail.com"
@@ -56,7 +58,8 @@
                 { 
                     "id":3,
                     "code":45678,
-                    "name":"vasija"
+                    "name":"vasija",
+                    "count":4
                 }
             ],
             "email":"alexgve7sv@gmail.com"
@@ -84,7 +87,8 @@
                 { 
                     "id":5,
                     "code":45678,
-                    "name":"vasija"
+                    "name":"vasija",
+                    "count":4
                 }
             ],
             "email":"carbone@gmail.com"
@@ -112,7 +116,8 @@
                 { 
                     "id":8,
                     "code":45678,
-                    "name":"vasija"
+                    "name":"vasija",
+                    "count":8
                 }
             ],
             "email":"roxanaaguilar@gmail.com"
@@ -135,7 +140,8 @@
                 { 
                     "id":6,
                     "code":123456,
-                    "name":"Centro de mesa"
+                    "name":"Centro de mesa",
+                    "count":9
                 }
             ],
             "email":"carranza@gmail.com"
@@ -158,7 +164,8 @@
                 { 
                     "id":7,
                     "code":456789,
-                    "name":"Silla"
+                    "name":"Silla",
+                    "count":5
                 }
             ],
             "email":"elizabeth@gmail.com"
