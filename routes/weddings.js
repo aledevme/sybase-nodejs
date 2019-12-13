@@ -8,7 +8,7 @@ router
 .get('/',wedding.all)
 .get('/search',wedding.search)
 .get('/:id', wedding.findOne)
-.get('/:id/products/:id',wedding.findProduct)
+.patch('/:id/products/:id',wedding.findProduct)
 //post request
 .post('/',wedding.create)
 
