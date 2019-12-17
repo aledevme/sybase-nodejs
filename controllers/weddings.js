@@ -20,16 +20,7 @@ controller.all = (req,res) => {
     }
 }
 controller.create = (req,res) =>{
-    let student = { 
-        name: 'Mike',
-        age: 23, 
-        gender: 'Male',
-        department: 'English',
-        car: 'Honda' 
-    };
-     
-    let data = JSON.stringify(student);
-    fs.writeFileSync('student-2.json', data);
+    console.log(req.body)
 }
 controller.findOne = (req,res) =>{
     const data = fs.readFileSync(dbWeeding);

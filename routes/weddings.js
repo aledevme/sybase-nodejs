@@ -8,7 +8,6 @@ router
 .get('/',wedding.all)
 .get('/:id', wedding.findOne)
 //post request
-
 .post('/',wedding.create)
 .post('/search',wedding.search)
 //patch request
