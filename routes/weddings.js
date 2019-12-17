@@ -10,6 +10,8 @@ router
 //post request
 .post('/',wedding.create)
 .post('/search',wedding.search)
+//put request
+.put('/:id',wedding)
 //patch request
 .patch('/:idwedding/products/:idproduct',wedding.findProduct)
 module.exports = router
