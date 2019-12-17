@@ -20,10 +20,10 @@ controller.all = (req,res) => {
     }
 }
 controller.create = (req,res) =>{
-    console.log(req.body)
+    res.send(req.body)
 }
 controller.update = (req, res) =>{
-    console.log('Hokla')
+    res.send(req.body)
 }
 controller.findOne = (req,res) =>{
     const data = fs.readFileSync(dbWeeding);
