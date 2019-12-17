@@ -23,7 +23,7 @@ controller.create = (req,res) =>{
     console.log(req.body)
 }
 controller.update = (req, res) =>{
-    console.log(req.body)
+    console.log('Hokla')
 }
 controller.findOne = (req,res) =>{
     const data = fs.readFileSync(dbWeeding);
