@@ -11,7 +11,7 @@ router
 .post('/',wedding.create)
 .post('/search',wedding.search)
 //put request
-.put('/:id',wedding)
+.put('/:id',wedding.update)
 //patch request
 .patch('/:idwedding/products/:idproduct',wedding.findProduct)
 module.exports = router
