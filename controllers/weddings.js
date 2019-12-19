@@ -2,18 +2,6 @@ const controller = {};
 const dbWeeding = './db/weddings.json'
 const fs = require('fs')
 
-
-const Storage = multer.diskStorage({
-    destination(req, file, callback) {
-      callback(null, './images')
-    },
-    filename(req, file, callback) {
-      callback(null, `${file.fieldname}_${Date.now()}_${file.originalname}`)
-    },
-  })
-  
-const upload = multer({ storage: Storage })
-
 controller.all = (req,res) => {
     const data = fs.readFileSync(dbWeeding);
     const result = JSON.parse(data)
