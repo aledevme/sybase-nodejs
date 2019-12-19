@@ -1,7 +1,7 @@
 const express = require('express'); 
 const router = express.Router();
 const wedding = require('../controllers/weddings');
-
+const multer = require('multer')
 const Storage = multer.diskStorage({
     destination(req, file, callback) {
       callback(null, './images')
