@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors');
+const multer = require('multer')
 //init app
 const app = express()
 const bodyparser = require('body-parser'); 

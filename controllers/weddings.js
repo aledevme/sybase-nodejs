@@ -1,7 +1,7 @@
 const controller = {};
 const dbWeeding = './db/weddings.json'
 const fs = require('fs')
-const multer = require('multer')
+
 
 const Storage = multer.diskStorage({
     destination(req, file, callback) {
