@@ -103,7 +103,7 @@ controller.search = (req, res) =>{
     }
 }
 
-controller.uploadPhoto = upload.array('photo',3), (req,body) =>{
+controller.uploadPhoto = (req,res) =>{
     console.log(req.body)
 }
 
