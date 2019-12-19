@@ -104,7 +104,11 @@ controller.search = (req, res) =>{
 }
 
 controller.uploadPhoto = (req,res) =>{
-    console.log(req.body)
+    console.log('file', req.files)
+    console.log('body', req.body)
+    res.status(200).json({
+        message: 'success!',
+    })
 }
 
 module.exports = controller
