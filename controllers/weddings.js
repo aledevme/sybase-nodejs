@@ -33,7 +33,7 @@ controller.create = (req,res) =>{
         direction:req.body.direction,
         email:req.body.email
     }).then(ref => {
-        console.log('Added document with ID: ', ref.id);
+        res.send(ref.id)
     });
 }
 controller.update = (req, res) =>{
