@@ -6,15 +6,17 @@ var admin = require("firebase-admin");
 const db = admin.firestore()
 
 controller.all = (req,res) => {
+    var wedding = [];
     let citiesRef = db.collection('bodas');
     citiesRef.get()
     .then(snapshot => {
         snapshot.forEach(doc => {
-            var wedding = doc.data()
-            res.json({
-                data:wedding
-            })
+            wedding.push( doc.data() )
         });
+
+        res.json({
+            data:wedding
+        })
     })
     .catch(err => {
         console.log('Error getting documents', err);
