@@ -1,6 +1,9 @@
 const controller = {};
 const dbWeeding = './db/weddings.json'
 const fs = require('fs')
+//firebase
+var admin = require("firebase-admin");
+const db = admin.firestore()
 
 controller.all = (req,res) => {
     const data = fs.readFileSync(dbWeeding);
@@ -20,7 +23,17 @@ controller.all = (req,res) => {
     }
 }
 controller.create = (req,res) =>{
-    res.send(req.body)
+    db.collection('bodas').add({
+        nameboyfriend: req.body.nameboyfriend,
+        lastnameboyfriend:req.body.namegirlfriend,
+        namegirlfriend:req.body.lastnameBoyfriend,
+        lastnamegirlfriend:req.body.lastnameGirlfriend,
+        datewedding:req.body.date,
+        direction:req.body.direction,
+        email:req.body.email
+    }).then(ref => {
+        console.log('Added document with ID: ', ref.id);
+    });
 }
 controller.update = (req, res) =>{
     res.send(req.body)
