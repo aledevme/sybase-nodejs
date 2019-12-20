@@ -11,7 +11,9 @@ controller.all = (req,res) => {
     .then(snapshot => {
         snapshot.forEach(doc => {
             var wedding = doc.data()
-            console.log(wedding.nameboyfriend)
+            res.json({
+                data:wedding
+            })
         });
     })
     .catch(err => {
