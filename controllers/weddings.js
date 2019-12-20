@@ -23,6 +23,7 @@ controller.all = (req,res) => {
     }
 }
 controller.create = (req,res) =>{
+    console.log(req.body)
     db.collection('bodas').add({
         nameboyfriend: req.body.nameboyfriend,
         lastnameboyfriend:req.body.namegirlfriend,
