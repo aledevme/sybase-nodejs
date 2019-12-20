@@ -6,21 +6,17 @@ var admin = require("firebase-admin");
 const db = admin.firestore()
 
 controller.all = (req,res) => {
-    const data = fs.readFileSync(dbWeeding);
-    const result = JSON.parse(data)
-    console.log(result)
-    if(result.weddings.length > 0){
-        res.send({
-            code:200,
-            data:result,
-            count:result.weddings.length
+    let citiesRef = db.collection('bodas');
+    citiesRef.get()
+    .then(snapshot => {
+        snapshot.forEach(doc => {
+            var wedding = doc.data()
+            console.log(wedding.nameboyfriend)
         });
-    }else{
-        res.send({
-            code:404,
-            data:'No weddings',
-        });
-    }
+    })
+    .catch(err => {
+        console.log('Error getting documents', err);
+    })
 }
 controller.create = (req,res) =>{
     console.log(req.body)
