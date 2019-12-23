@@ -70,12 +70,13 @@ controller.findProduct = (req,res) =>{
 }
 
 
-controller.products = async (req,res) =>{
+controller. products = async (req,res) =>{
     try {
         var list = []
     
         let wedding = db.collection('bodas').doc(req.params.id).get()
-        if(wedding.exists){
+
+        if((await wedding).exists){
             let products = db.collection('bodas').doc(req.params.id).collection('products')
             let getProducts = (await products.get())
             getProducts.forEach(e=>{
