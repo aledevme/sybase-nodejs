@@ -39,12 +39,28 @@ controller.create = (req,res) =>{
 controller.update = (req, res) =>{
     res.send(req.body)
 }
-controller.findOne = (req,res) =>{
-    const data = fs.readFileSync(dbWeeding);
-    const result = JSON.parse(data)
-    res.send({
-        data : result.weddings.find(wedding => wedding.id === parseInt(req.params.id))
-    })
+controller.findOne = async (req,res) =>{
+    var data = []
+    try {
+        let wedding = db.collection('bodas').doc(req.params.id)
+        let getWedding = (await wedding.get())
+        if(getWedding.exists){
+            data.push({id:getWedding.id,...getWedding.data()})
+            res.send({
+                data:data
+            })
+        }
+        else{
+            res.send({
+                data:'Document not found',
+                status:404
+            })
+        }
+        console.log(data)
+        
+    } catch (error) {
+        
+    }
 }
 controller.countWeddings = (req,res) =>{
     const data = fs.readFileSync(dbWeeding);
