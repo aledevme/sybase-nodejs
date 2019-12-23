@@ -5,28 +5,25 @@ const fs = require('fs')
 var admin = require("firebase-admin");
 const db = admin.firestore()
 
-controller.all = async (req,res) => {
+controller.all = (req,res) => {
     var wedding = []
-    var documents = []
     let citiesRef = db.collection('bodas');
     citiesRef.get()
     .then(snapshot => {
         snapshot.forEach(doc => {
-            documents.push(doc.id)
-            wedding.push(doc.data())
+            wedding.push({id:doc.id,...doc.data()})
         });
 
         res.json({
-            documents:documents,
             data:wedding
         })
     })
     .catch(err => {
         console.log('Error getting documents', err);
     })
+
 }
 controller.create = (req,res) =>{
-    console.log(req.body)
     db.collection('bodas').add({
         nameboyfriend: req.body.nameboyfriend,
         lastnameboyfriend:req.body.namegirlfriend,
