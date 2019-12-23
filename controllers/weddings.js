@@ -25,13 +25,13 @@ controller.all = (req,res) => {
 }
 controller.create = (req,res) =>{
     db.collection('bodas').add({
-        nameboyfriend: req.body.nameboyfriend,
-        lastnameboyfriend:req.body.namegirlfriend,
-        namegirlfriend:req.body.lastnameBoyfriend,
-        lastnamegirlfriend:req.body.lastnameGirlfriend,
         datewedding:req.body.date,
         direction:req.body.direction,
-        email:req.body.email
+        email:req.body.email,
+        lastnameboyfriend:req.body.lastnameBoyfriend,
+        lastnamegirlfriend:req.body.lastnameGirlfriend,
+        nameboyfriend: req.body.nameBoyFriend,
+        namegirlfriend:req.body.nameGirlFriend,
     }).then(ref => {
         res.send(ref.id)
     });
@@ -56,7 +56,6 @@ controller.findOne = async (req,res) =>{
                 status:404
             })
         }
-        console.log(data)
         
     } catch (error) {
         
