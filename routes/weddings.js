@@ -10,11 +10,10 @@ router
 .get('/:id', wedding.findOne)
 //post request
 .post('/create',wedding.create)
-.post('/search',wedding.search)
-.post('/upload', wedding.uploadPhoto)
 //put request
 .put('/:id/edit',wedding.update)
 //patch request
 .patch('/:idwedding/products/:idproduct',wedding.findProduct)
+//.patch('/:id/products/',wedding.products)
 
 module.exports = router

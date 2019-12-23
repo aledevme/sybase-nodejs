@@ -4,6 +4,6 @@ const pasteles = require('../controllers/pasteles')
 
 router
 //get request
-.get('/', pasteles.addPastel)
+.get('/', pasteles.all)
 
 module.exports = router
