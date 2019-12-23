@@ -14,6 +14,6 @@ router
 .put('/:id/edit',wedding.update)
 //patch request
 .patch('/:idwedding/products/:idproduct',wedding.findProduct)
-//.patch('/:id/products/',wedding.products)
+.patch('/:id/products/',wedding.products)
 
 module.exports = router
