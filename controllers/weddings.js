@@ -30,8 +30,8 @@ controller.create = (req,res) =>{
         email:req.body.email,
         lastnameboyfriend:req.body.lastnameBoyfriend,
         lastnamegirlfriend:req.body.lastnameGirlfriend,
-        nameboyfriend: req.body.nameBoyFriend,
-        namegirlfriend:req.body.nameGirlFriend,
+        nameboyfriend: req.body.nameboyfriend,
+        namegirlfriend:req.body.namegirlfriend,
     }).then(ref => {
         res.send(ref.id)
     });
