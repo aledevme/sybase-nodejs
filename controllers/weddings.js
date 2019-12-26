@@ -74,7 +74,7 @@ controller.products = async (req,res) =>{
                 list.push(
                     {
                         id:e.id,
-                        product:e.data().name
+                        product:e.data().product
                     })
             })
             res.send(list)
@@ -84,7 +84,7 @@ controller.products = async (req,res) =>{
                 data:'Document not found',
                 status:404
             })
-        }  7
+        }  
     } catch (error) {
         console.log(error)
     }
