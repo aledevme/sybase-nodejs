@@ -89,25 +89,22 @@ controller.products = async (req,res) =>{
         console.log(error)
     }
 }
-controller.addProduct = async(req, res)=>{
+controller.addProduct = async (req, res) =>{
     try {
         const result = await db.collection('bodas').doc(req.params.id).collection('products').add({
             id: req.body.productId,
             name:req.body.productName
         })
-
-        result ? 
-        res.send({
-            data:'Product added to wedding'
+    
+        result ? res.send({
+            data:'Product added to wedding!'
         }) : 
         res.send({
-            data:'Error to add product'
+            data:'Failed to add product'
         })
-
     } catch (error) {
-        
+        console.log(error)
     }
-
-    
 }
+
 module.exports = controller

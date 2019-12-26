@@ -40,7 +40,7 @@ const port = process.env.PORT || 3000
 //objects routes
 const weddings = require('./routes/weddings')
 const employee = require('./routes/employee')
-const pasteles = require('./routes/pasteles')
+
 app.use(cors())
 app.use(bodyparser.json()); 
 
@@ -50,7 +50,7 @@ app.use(bodyparser.urlencoded({
 
 app.use('/employee',employee)
 app.use('/weddings',weddings)
-app.use('/pasteles',pasteles)
+
 app.listen(port, function () {
     console.log('Example app listening on port 3000!');
 });
