@@ -92,12 +92,12 @@ controller.products = async (req,res) =>{
 controller.addProduct = async (req, res) =>{
     try {
 
-        var wedding = db.collection('bodas').doc(`${req.params.id}`).collection('products')
+        var ref = await db.collection('bodas').doc(req.params.id).collection('products');
 
-        wedding.add({
-            id:req.params.code
+        const result = await ref.doc(req.params.code).set({
+            name:'Producto '+req.params.code
         })
-    
+
         result ? res.send({
             data:'Product added to wedding!'
         }) : 
