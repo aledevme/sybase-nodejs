@@ -84,7 +84,7 @@ controller.products = async (req,res) =>{
                 data:'Document not found',
                 status:404
             })
-        }  
+        }  7
     } catch (error) {
         console.log(error)
     }
@@ -95,7 +95,7 @@ controller.addProduct = async (req, res) =>{
         var wedding = db.collection('bodas').doc(req.body.id).collection('products')
 
         const result = await wedding.add({
-            id:req.body.code
+            product:req.body.code
         })
     
         result ? res.send({
