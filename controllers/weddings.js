@@ -61,16 +61,7 @@ controller.findOne = async (req,res) =>{
         console.log(error)
     }
 }
-controller.countWeddings = (req,res) =>{
-    
-}
-
-controller.findProduct = (req,res) =>{
-    
-}
-
-
-controller. products = async (req,res) =>{
+controller.products = async (req,res) =>{
     try {
         var list = []
     
@@ -98,5 +89,25 @@ controller. products = async (req,res) =>{
         console.log(error)
     }
 }
+controller.addProduct = async(req, res)=>{
+    try {
+        const result = await db.collection('bodas').doc(req.params.id).collection('products').add({
+            id: req.body.productId,
+            name:req.body.productName
+        })
 
+        result ? 
+        res.send({
+            data:'Product added to wedding'
+        }) : 
+        res.send({
+            data:'Error to add product'
+        })
+
+    } catch (error) {
+        
+    }
+
+    
+}
 module.exports = controller
