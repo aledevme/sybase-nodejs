@@ -91,8 +91,11 @@ controller.products = async (req,res) =>{
 }
 controller.addProduct = async (req, res) =>{
     try {
-        const result = await db.collection('bodas').doc(req.params.id).collection('products').add({
-            code: req.body.code,
+
+        var wedding = db.collection('bodas').doc(req.params.id).collection('products')
+
+        wedding.doc(req.params.id).set({
+            id:req.params.code
         })
     
         result ? res.send({
