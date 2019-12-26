@@ -92,7 +92,7 @@ controller.products = async (req,res) =>{
 controller.addProduct = async (req, res) =>{
     try {
 
-        var wedding = db.collection('bodas').doc(req.params.id).collection('products')
+        var wedding = db.collection('bodas').doc(`${req.params.id}`).collection('products')
 
         wedding.add({
             id:req.params.code
