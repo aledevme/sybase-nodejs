@@ -94,7 +94,7 @@ controller.addProduct = async (req, res) =>{
 
         var wedding = db.collection('bodas').doc(req.body.id).collection('products')
 
-        wedding.add({
+        const result = await wedding.add({
             id:req.body.code
         })
     
