@@ -92,10 +92,10 @@ controller.products = async (req,res) =>{
 controller.addProduct = async (req, res) =>{
     try {
         console.log(req.body)
-        var ref = await db.collection('bodas').doc(req.params.id).collection('products');
+        var ref = await db.collection('bodas').doc(req.body.id).collection('products');
 
-        const result = await ref.doc(req.params.code).set({
-            name:'Producto '+req.params.code
+        const result = await ref.doc(req.body.code).add({
+            name:'Producto '+req.body.code
         })
 
         result ? res.send({
