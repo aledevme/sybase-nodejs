@@ -117,8 +117,22 @@ controller.addProduct = async (req, res) =>{
         console.log(error)
     }
 }
+controller.updateProductCount = async (req, res) =>{
+    try {
+        let wedding = await db.collection('bodas').doc(req.params.id).collection('products').doc(req.params.productId)
+        wedding.update({
+            'count':req.body.count
+        })
+        res.send({
+            data:'Succesfully updated'
+        })
+    } catch (error) {
+        console.log(error)
+    }
+
+
+}
 controller.deleteProduct = async (req, res) => {
-    console.log(req.body)
     try {
         let wedding = await db.collection('bodas')
         .doc(req.body.documentId)

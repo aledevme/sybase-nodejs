@@ -11,6 +11,7 @@ router
 .post('/products/add',wedding.addProduct)
 //put request
 .put('/:id/edit',wedding.update)
+.put('/:id/products/:productId/edit',wedding.updateProductCount)
 //patch request
 .patch('/:id/products/',wedding.products)
 .patch('/:id/products/:productId',wedding.getOneProduct)
