@@ -92,12 +92,9 @@ controller.products = async (req,res) =>{
 controller.getOneProduct = async (req, res) => {
     var result = []
     var wedding = db.collection('bodas').doc(req.params.id).collection('products').doc(req.params.productId)
-    /*const result = wedding.update({
-        'count':40
-    })*/
     result.push({
         id:wedding.id,
-        data: (await wedding.get()).data()
+        ...(await wedding.get()).data()
     })
     res.send(result)
 }
