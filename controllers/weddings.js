@@ -91,7 +91,6 @@ controller.products = async (req,res) =>{
 }
 controller.addProduct = async (req, res) =>{
     try {
-
         var wedding = db.collection('bodas').doc(req.body.id).collection('products')
 
         const result = await wedding.add({
@@ -108,5 +107,22 @@ controller.addProduct = async (req, res) =>{
         console.log(error)
     }
 }
+controller.deleteProduct = async (req, res) => {
+    try {
+        let wedding = await db.collection('bodas')
+        .doc(req.body.documentId)
+        .collection('products')
+        .doc(req.body.docproductId)
+        .delete();
 
+        wedding ? res.send({
+            data:'Product deleted succesfully'
+        }) : 
+        res.send({
+            data:'Failed to delete product'
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
 module.exports = controller
