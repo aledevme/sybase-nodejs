@@ -95,9 +95,7 @@ controller.getOneProduct = async (req, res) => {
         'count':40
     })*/
     const result = (await wedding.get()).data()
-    res.send({
-        data:result
-    })
+    res.send(result)
 }
 controller.addProduct = async (req, res) =>{
     try {
