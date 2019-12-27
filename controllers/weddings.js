@@ -108,6 +108,7 @@ controller.addProduct = async (req, res) =>{
     }
 }
 controller.deleteProduct = async (req, res) => {
+    console.log(req.body)
     try {
         let wedding = await db.collection('bodas')
         .doc(req.body.documentId)
