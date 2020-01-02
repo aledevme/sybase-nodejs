@@ -15,6 +15,7 @@ router
 //patch request
 .patch('/:id/products/',wedding.products)
 .patch('/:id/products/:productId',wedding.getOneProduct)
+.patch('/:id/indications/', wedding.getListIndications)
 //delete request
 .delete('/products/delete',wedding.deleteProduct)
 module.exports = router

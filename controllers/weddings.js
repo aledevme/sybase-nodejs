@@ -150,4 +150,17 @@ controller.deleteProduct = async (req, res) => {
         console.log(error)
     }
 }
+controller.getListIndications = async (req, res)=>{
+    var indications = []
+    let ref = await db.collection('bodas').doc(req.params.id).collection('indications').get()
+    
+    ref.forEach(json=>{
+        indications.push({
+            id:json.id,
+            ...json.data()
+        })
+    })
+
+    res.send(indications)
+}
 module.exports = controller

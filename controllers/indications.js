@@ -3,15 +3,20 @@ const controller = {}
 var admin = require("firebase-admin");
 const db = admin.firestore()
 
-controller.all = (req, res) => {
-
+controller.all = async (req, res) => {
+    let ref = await db.collection('bodas').doc(req.params.idDoc).collection('indications').get()
+    ref.forEach(json=>{
+        console.log(json.data())
+    })
 }
 controller.addIndication = async (req, res) => {
+    console.log(req.body)
     try {
         let ref = await db.collection('bodas').doc(req.body.docId).collection('indications')
 
         const result = ref.add({
-            indication:req.body.indication
+            indication:req.body.indication,
+            status:false
         })
 
         result ? res.send({
