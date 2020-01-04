@@ -59,7 +59,7 @@ app.use(bodyparser.urlencoded({
 app.use('/employee',employee)
 app.use('/weddings',weddings)
 app.use('/indications',indications)
-app.use('/typescript',typeScript)
+
 //init app
 app.listen(port, function () {
     console.log('Example app listening on port 3000!');
