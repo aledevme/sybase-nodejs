@@ -62,5 +62,6 @@ app.use('/indications',indications)
 
 //init app
 app.listen(port, function () {
-    console.log('Example app listening on port 3000!');
+    console.log('app listening on port 3000!');
+    console.log('listo')
 });
