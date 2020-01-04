@@ -3,5 +3,6 @@ const router = express.Router();
 const controller = require('../controllers/indications')
 router
 .post('/', controller.addIndication)
+.delete('/:id/',controller.deleteIndication)
 
 module.exports = router

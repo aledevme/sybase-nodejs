@@ -25,4 +25,5 @@ controller.addIndication = async (req, res) => {
     }
 }
 
+
 module.exports = controller

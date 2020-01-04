@@ -19,4 +19,5 @@ router
 .patch('/:id/indications/', wedding.getListIndications)
 //delete request
 .delete('/products/delete',wedding.deleteProduct)
+.delete('/:id/indications/:idIndication',wedding.deleteIndication)
 module.exports = router

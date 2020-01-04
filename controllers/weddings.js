@@ -174,4 +174,20 @@ controller.updateStatusIndication =  async (req, res) => {
         console.log(error)
     }
 }
+controller.deleteIndication = async(req, res) => {
+    try {
+        let result = await db.collection('bodas')
+        .doc(req.params.id)
+        .collection('indications')
+        .doc(req.params.idIndication)
+        .delete();
+
+        res.send({
+            data:'Indication deleted succesfully'
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = controller
