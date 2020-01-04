@@ -176,7 +176,7 @@ controller.updateStatusIndication =  async (req, res) => {
 }
 controller.deleteIndication = async(req, res) => {
     try {
-        let result = await db.collection('bodas')
+        await db.collection('bodas')
         .doc(req.params.id)
         .collection('indications')
         .doc(req.params.idIndication)
