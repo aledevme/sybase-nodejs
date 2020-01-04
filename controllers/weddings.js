@@ -129,8 +129,6 @@ controller.updateProductCount = async (req, res) =>{
     } catch (error) {
         console.log(error)
     }
-
-
 }
 controller.deleteProduct = async (req, res) => {
     try {
@@ -162,5 +160,18 @@ controller.getListIndications = async (req, res)=>{
     })
 
     res.send(indications)
+}
+controller.updateStatusIndication =  async (req, res) => {
+    try {
+        let wedding = await db.collection('bodas').doc(req.params.id).collection('products').doc(req.params.indicationId)
+        wedding.update({
+            'status':req.body.status
+        })
+        res.send({
+            data:'Succesfully updated'
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
 module.exports = controller

@@ -3,12 +3,6 @@ const controller = {}
 var admin = require("firebase-admin");
 const db = admin.firestore()
 
-controller.all = async (req, res) => {
-    let ref = await db.collection('bodas').doc(req.params.idDoc).collection('indications').get()
-    ref.forEach(json=>{
-        console.log(json.data())
-    })
-}
 controller.addIndication = async (req, res) => {
     console.log(req.body)
     try {
