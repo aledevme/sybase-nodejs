@@ -163,7 +163,7 @@ controller.getListIndications = async (req, res)=>{
 }
 controller.updateStatusIndication =  async (req, res) => {
     try {
-        let wedding = await db.collection('bodas').doc(req.params.id).collection('products').doc(req.params.indicationId)
+        let wedding = await db.collection('bodas').doc(req.params.id).collection('indications').doc(req.params.indicationId)
         wedding.update({
             'status':req.body.status
         })
