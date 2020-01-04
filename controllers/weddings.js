@@ -161,7 +161,7 @@ controller.getListIndications = async (req, res)=>{
 
     res.send(indications)
 }
-controller.updateStatusIndication =  async (req, res) => {
+controller.updateStatusIndication = async (req, res) => {
     try {
         let wedding = await db.collection('bodas').doc(req.params.id).collection('indications').doc(req.params.indicationId)
         wedding.update({
@@ -176,14 +176,16 @@ controller.updateStatusIndication =  async (req, res) => {
 }
 controller.deleteIndication = async(req, res) => {
     try {
-        await db.collection('bodas')
+        let result = await db.collection('bodas')
         .doc(req.params.id)
         .collection('indications')
         .doc(req.params.idIndication)
         .delete();
 
-        res.send({
+        result ? res.send({
             data:'Indication deleted succesfully'
+        }) : res.send({
+            data:'Indication can not deleted'  
         })
     } catch (error) {
         console.log(error)
