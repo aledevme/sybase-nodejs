@@ -24,12 +24,13 @@ controller.all = (req,res) => {
 controller.create = (req,res) =>{
     db.collection('bodas').add({
         datewedding:req.body.date,
-        direction:req.body.direction,
         email:req.body.email,
         lastnameboyfriend:req.body.lastnameBoyfriend,
         lastnamegirlfriend:req.body.lastnameGirlfriend,
         nameboyfriend: req.body.nameboyfriend,
         namegirlfriend:req.body.namegirlfriend,
+        latitude:0,
+        longitude:0
     }).then(ref => {
         res.send(ref.id)
     });
