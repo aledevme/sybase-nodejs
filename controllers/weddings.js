@@ -192,5 +192,19 @@ controller.deleteIndication = async(req, res) => {
         console.log(error)
     }
 }
+controller.updateLocation = async(req, res) => {
+    try {
+        let wedding = await db.collection('bodas').doc(req.params.id)
+        wedding.update({
+            'latitude':req.body.latitude,
+            'longitude':req.body.longitude
+        })
+        res.send({
+            data:'Succesfully updated'
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 module.exports = controller

@@ -13,6 +13,7 @@ router
 .put('/:id/edit',wedding.update)
 .put('/:id/products/:productId/edit',wedding.updateProductCount)
 .put('/:id/indications/:indicationId/status',wedding.updateStatusIndication)
+.put('/:id/edit/place',wedding.updateLocation)
 //patch request
 .patch('/:id/products/',wedding.products)
 .patch('/:id/products/:productId',wedding.getOneProduct)
