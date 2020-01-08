@@ -2,7 +2,7 @@ const controller = {};
 //firebase
 var admin = require("firebase-admin");
 const db = admin.firestore()
-
+const helper = require('../model/wedding')
 controller.all = (req,res) => {
     var wedding = []
     let citiesRef = db.collection('bodas');
@@ -102,37 +102,32 @@ controller.getOneProduct = async (req, res) => {
 controller.addProduct = async (req, res) =>{
     try {
         var wedding = db.collection('bodas').doc(req.body.id).collection('products')
-        const result = await wedding.add({
-            product:req.body.code,
-            count:req.body.count
-        })
-    
-        result ? res.send({
-            data:'Product added to wedding!'
-        }) : 
-        res.send({
-            data:'Failed to add product'
-        })
+        if(helper.existProduct(req.body.id,req.body.code)){
+            res.send({
+                exist : true,
+                data:'producto agregado a la lista'
+            })
+        }else{
+            const result = await wedding.add({
+                product:req.body.code,
+                count:req.body.count
+            })
+
+            result ? res.send({
+                data:'Product added to wedding!'
+            }) : 
+            res.send({
+                data:'Failed to add product'
+            })
+        }
+        
     } catch (error) {
         console.log(error)
     }
 }
 controller.verifyCodeProduct = async (req, res) => {
     try {
-        var wedding = db.collection('bodas').doc(req.body.id).collection('products')
-        const result = wedding.where('product' == req.body.code)
-        if(result){
-            res.send({
-                exist: true,
-                data:'Producto ya en lista de la boda'
-            })
-        }
-        else {
-            res.send({
-                exist:false,
-                data:'Producto no existente'
-            })
-        }
+        
     } catch (error) {
         console.log(error)
     }
