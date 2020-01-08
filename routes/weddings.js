@@ -10,7 +10,7 @@ router
 //post request
 .post('/create',wedding.create)
 .post('/products/add',wedding.addProduct)
-.post('products/verify',wedding.verifyCodeProduct)
+.post('/products/verify',wedding.verifyCodeProduct)
 //put request
 .put('/:id/edit',wedding.update)
 .put('/:id/products/:productId/edit',wedding.updateProductCount)
