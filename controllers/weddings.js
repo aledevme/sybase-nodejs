@@ -100,37 +100,24 @@ controller.getOneProduct = async (req, res) => {
     res.send(result)
 }
 controller.addProduct = async (req, res) =>{
+    console.log(req.body)
+    
     try {
-        var wedding = db.collection('bodas').doc(req.body.id).collection('products')
-        if(helper.existProduct(req.body.id,req.body.code)){
-            res.send({
-                exist : true,
-                data:'producto agregado a la lista'
-            })
-        }else{
             const result = await wedding.add({
                 product:req.body.code,
                 count:req.body.count
             })
-
+            
             result ? res.send({
                 data:'Product added to wedding!'
             }) : 
             res.send({
                 data:'Failed to add product'
             })
-        }
-        
     } catch (error) {
         console.log(error)
     }
-}
-controller.verifyCodeProduct = async (req, res) => {
-    try {
-        
-    } catch (error) {
-        console.log(error)
-    }
+    
 }
 controller.updateProductCount = async (req, res) =>{
     try {
