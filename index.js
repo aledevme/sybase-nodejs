@@ -46,6 +46,7 @@ const port = process.env.PORT || 3000
 const weddings = require('./routes/weddings')
 const employee = require('./routes/employee')
 const indications = require('./routes/indications')
+const delivery = require('./routes/Deliveries')
 //middlewares
 app.use(cors())
 app.use(bodyparser.json()); 
@@ -59,6 +60,7 @@ app.use(bodyparser.urlencoded({
 app.use('/employee',employee)
 app.use('/weddings',weddings)
 app.use('/indications',indications)
+app.use('/delivery',delivery)
 
 //init app
 app.listen(port, function () {
