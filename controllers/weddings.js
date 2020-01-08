@@ -121,11 +121,16 @@ controller.verifyCodeProduct = async (req, res) => {
     try {
         var wedding = db.collection('bodas').doc(req.body.id).collection('products')
         const result = wedding.where('product' == req.body.code)
-
         if(result){
             res.send({
                 exist: true,
                 data:'Producto ya en lista de la boda'
+            })
+        }
+        else {
+            res.send({
+                exist:false,
+                data:'Producto no existente'
             })
         }
     } catch (error) {
