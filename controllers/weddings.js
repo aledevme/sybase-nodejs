@@ -103,17 +103,18 @@ controller.addProduct = async (req, res) =>{
     console.log(req.body)
     
     try {
-            const result = await wedding.add({
-                product:req.body.code,
-                count:req.body.count
-            })
-            
-            result ? res.send({
-                data:'Product added to wedding!'
-            }) : 
-            res.send({
-                data:'Failed to add product'
-            })
+        var wedding = await db.collection('bodas').doc(req.body.id).collection('products')
+        const result = await wedding.add({
+            product:req.body.code,
+            count:req.body.count
+        })
+        
+        result ? res.send({
+            data:'Product added to wedding!'
+        }) : 
+        res.send({
+            data:'Failed to add product'
+        })
     } catch (error) {
         console.log(error)
     }
