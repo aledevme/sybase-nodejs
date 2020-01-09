@@ -100,21 +100,70 @@ controller.getOneProduct = async (req, res) => {
     res.send(result)
 }
 controller.addProduct = async (req, res) =>{
-    console.log(req.body)
-    
     try {
+        //collection weddings products
         var wedding = await db.collection('bodas').doc(req.body.id).collection('products')
-        const result = await wedding.add({
-            product:req.body.code,
-            count:req.body.count
-        })
+        //get products collection
+        var products = await db.collection('bodas').doc(req.body.id).collection('products').get()
+        //document
+        let document = await db.collection('bodas').doc(req.body.id).get()
+        //result of products wedding
+        var result = []
+
+        let listproducts = await db.collection('bodas').doc(req.body.id).collection('products').get()
+
+        if(products.docs.length > 0){
+            
+            if(document.exists){
+
+                listproducts.forEach(e=>{
+                    result.push({
+                        product: parseInt(e.data().product)
+                    })
+                })
+
+                if(result.find(data => parseInt(data.product) === parseInt(req.body.code))){
+                    res.send({
+                        data:'this item exist'
+                    })
+                }
+                else{
+                    const result = await wedding.add({
+                        product:req.body.code,
+                        count:req.body.count
+                    })
+                
+                    result ? res.send({
+                        data:'Product added to wedding!'
+                    }) : 
+                    res.send({
+                        data:'Failed to add product'
+                    })
+                }
+                
+            }  
+            else{
+                res.send({
+                    data:'Document not found',
+                    status:404
+                })
+            }
+            
+        }
+        else{
+            const result = await wedding.add({
+                product:req.body.code,
+                count:req.body.count
+            })
         
-        result ? res.send({
-            data:'Product added to wedding!'
-        }) : 
-        res.send({
-            data:'Failed to add product'
-        })
+            result ? res.send({
+                data:'Product added to wedding!'
+            }) : 
+            res.send({
+                data:'Failed to add product'
+            })
+        }
+        
     } catch (error) {
         console.log(error)
     }
@@ -208,6 +257,33 @@ controller.updateLocation = async(req, res) => {
         console.log(error)
     }
 }
+controller.createDelivery = async(req, res)=>{
+    try {
+        var result = []
+        let wedding = db.collection('bodas').doc(req.body.id).get()
 
+        if((await wedding).exists){
+            let products = db.collection('bodas').doc(req.body.id).collection('products')
+            let getProducts = (await products.get())
+            getProducts.forEach(e=>{
+                result.push({
+                    id:e.id,
+                    product:e.data().product
+                })
+            })
+            
+            const found = result.find(data => data.product === req.body.product)
+            console.log(found)
+        }  
+        else{
+            res.send({
+                data:'Document not found',
+                status:404
+            })
+        }     
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 module.exports = controller
