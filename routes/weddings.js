@@ -10,7 +10,7 @@ router
 //post request
 .post('/create',wedding.create)
 .post('/products/add',wedding.addProduct)
-.post('/delivery', wedding.createDelivery)
+.post('/delivery/add', wedding.createDelivery)
 //put request
 .put('/:id/edit',wedding.update)
 .put('/:id/products/:productId/edit',wedding.updateProductCount)
@@ -18,6 +18,7 @@ router
 .put('/:id/edit/place',wedding.updateLocation)
 //patch request
 .patch('/:id/products/',wedding.products)
+.patch('/:id/deliveries/',wedding.getDeliveries)
 .patch('/:id/products/:productId',wedding.getOneProduct)
 .patch('/:id/indications/', wedding.getListIndications)
 //delete request

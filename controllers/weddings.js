@@ -3,6 +3,8 @@ const controller = {};
 var admin = require("firebase-admin");
 const db = admin.firestore()
 const helper = require('../model/wedding')
+
+const moment = require('moment')
 controller.all = (req,res) => {
     var wedding = []
     let citiesRef = db.collection('bodas');
@@ -112,7 +114,7 @@ controller.addProduct = async (req, res) =>{
         //list of documents of weddings
         let listproducts = await db.collection('bodas').doc(req.body.id).collection('products').get()
         //verify if subcollection exist
-        if(products.docs.length > 0){
+        if(products.docs.length > 0){   
             //if wedding exist
             if(document.exists){
                 //get all products of wedding
@@ -263,30 +265,77 @@ controller.updateLocation = async(req, res) => {
 }
 controller.createDelivery = async(req, res)=>{
     try {
-        var result = []
-        let wedding = db.collection('bodas').doc(req.body.id).get()
-
-        if((await wedding).exists){
-            let products = db.collection('bodas').doc(req.body.id).collection('products')
-            let getProducts = (await products.get())
-            getProducts.forEach(e=>{
-                result.push({
-                    id:e.id,
-                    product:e.data().product
+        
+        let wedding = await db.collection('bodas').doc(req.body.id).get()
+        if(wedding.exists){
+            let deliveries = await db.collection('bodas').doc(req.body.id).collection('deliveries')
+            let product = await db.collection('bodas').doc(req.body.id).collection('products').doc(req.body.product)
+            var now = new Date();
+            var dateString = moment(now).format('YYYY-MM-DD');
+            const countTable = (await product.get()).data().count
+            if(countTable > 0){
+                if(countTable < req.body.count){
+                    res.send({
+                        stock:false,
+                        data:'Stock insufficient'
+                    })
+                }
+                else{
+                    const newstock = countTable-parseInt(req.body.count)
+                    product.update({
+                        'count':newstock
+                    })
+                    const result = deliveries.add({
+                        count:req.body.count,
+                        date: dateString,
+                        productId:req.body.product
+                    })
+    
+                    result ? res.send({ stock:true, data:'Delivery added' }) : res.send({ stock:false,data:'Fail to create a delivery' })
+                }
+            }
+            else{
+                res.send({
+                    stock:false,
+                    data:'Stock not avaible'
                 })
-            })
-            
-            const found = result.find(data => data.product === req.body.product)
-            console.log(found)
-        }  
+            }
+        }
         else{
             res.send({
-                data:'Document not found',
-                status:404
-            })
-        }     
+                data:'document not found'
+            })   
+        }
     } catch (error) {
         console.log(error)
+    }
+}
+controller.getDeliveries = async(req, res)=>{
+    try {
+        var data = []
+        let wedding = await db.collection('bodas').doc(req.params.id).get()
+        if(wedding.exists){
+            let deliveries = await db.collection('bodas').doc(req.params.id).collection('deliveries').get()
+            deliveries.forEach(deliverie => {
+                data.push({
+                    id:deliverie.id,
+                    date:moment(deliverie.data().date).format('L'),
+                    product:deliverie.data().productId,
+                    count: deliverie.data().count 
+                })
+            })
+
+            res.send({
+                data:data
+            })
+        }
+        else{
+            res.send({
+                data:'document not found'
+            })   
+        }
+    } catch (error) {
+        console.log(error)        
     }
 }
 
