@@ -325,9 +325,7 @@ controller.getDeliveries = async(req, res)=>{
                 })
             })
 
-            res.send({
-                data:data
-            })
+            res.send(data)
         }
         else{
             res.send({
