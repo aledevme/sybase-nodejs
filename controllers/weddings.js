@@ -109,31 +109,34 @@ controller.addProduct = async (req, res) =>{
         let document = await db.collection('bodas').doc(req.body.id).get()
         //result of products wedding
         var result = []
-
+        //list of documents of weddings
         let listproducts = await db.collection('bodas').doc(req.body.id).collection('products').get()
-
+        //verify if subcollection exist
         if(products.docs.length > 0){
-            
+            //if wedding exist
             if(document.exists){
-
+                //get all products of wedding
                 listproducts.forEach(e=>{
                     result.push({
                         product: parseInt(e.data().product)
                     })
                 })
-
+                //if item product exist in gifts table
                 if(result.find(data => parseInt(data.product) === parseInt(req.body.code))){
                     res.send({
+                        exist:true,
                         data:'this item exist'
                     })
                 }
                 else{
+                    //if dont exist create a document in subcollection
                     const result = await wedding.add({
                         product:req.body.code,
                         count:req.body.count
                     })
                 
                     result ? res.send({
+                        exist:false,
                         data:'Product added to wedding!'
                     }) : 
                     res.send({
