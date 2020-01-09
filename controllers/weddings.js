@@ -160,6 +160,7 @@ controller.addProduct = async (req, res) =>{
             })
         
             result ? res.send({
+                exist:false,
                 data:'Product added to wedding!'
             }) : 
             res.send({
