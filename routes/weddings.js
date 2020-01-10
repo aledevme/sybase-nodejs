@@ -21,6 +21,7 @@ router
 .patch('/:id/deliveries/',wedding.getDeliveries)
 .patch('/:id/products/:productId',wedding.getOneProduct)
 .patch('/:id/indications/', wedding.getListIndications)
+.patch('/:id/deliveries/:idDelivery/details/',wedding.detailDelivery)
 //delete request
 .delete('/products/delete',wedding.deleteProduct)
 .delete('/:id/indications/:idIndication',wedding.deleteIndication)

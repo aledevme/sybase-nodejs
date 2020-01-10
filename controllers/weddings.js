@@ -3,7 +3,6 @@ const controller = {};
 var admin = require("firebase-admin");
 const db = admin.firestore()
 const helper = require('../model/wedding')
-
 const moment = require('moment')
 controller.all = (req,res) => {
     var wedding = []
@@ -134,7 +133,9 @@ controller.addProduct = async (req, res) =>{
                     //if dont exist create a document in subcollection
                     const result = await wedding.add({
                         product:req.body.code,
-                        count:req.body.count
+                        count:req.body.count,
+                        price:10.50,
+                        description:'a Description'
                     })
                 
                     result ? res.send({
@@ -158,7 +159,9 @@ controller.addProduct = async (req, res) =>{
         else{
             const result = await wedding.add({
                 product:req.body.code,
-                count:req.body.count
+                count:req.body.count,
+                price:10.50,
+                description:'a Description'
             })
         
             result ? res.send({
@@ -280,15 +283,20 @@ controller.createDelivery = async(req, res)=>{
                         data:'Stock insufficient'
                     })
                 }
-                else{
-                    const newstock = countTable-parseInt(req.body.count)
-                    product.update({
-                        'count':newstock
-                    })
+                else{   
+                    
                     const result = deliveries.add({
+                        nameClient:req.body.nameClient,
+                        lastnameClient:req.body.lastnameClient,
                         count:req.body.count,
                         date: dateString,
-                        productId:req.body.product
+                        productId:req.body.product,
+                    })
+
+                    const newstock = countTable-parseInt(req.body.count)
+                    
+                    product.update({
+                        'count':newstock
                     })
     
                     result ? res.send({ stock:true, data:'Delivery added' }) : res.send({ stock:false,data:'Fail to create a delivery' })
@@ -321,7 +329,7 @@ controller.getDeliveries = async(req, res)=>{
                     id:deliverie.id,
                     date:moment(deliverie.data().date).format('L'),
                     product:deliverie.data().productId,
-                    count: deliverie.data().count 
+                    count: deliverie.data().count,
                 })
             })
 
@@ -336,5 +344,25 @@ controller.getDeliveries = async(req, res)=>{
         console.log(error)        
     }
 }
-
+controller.detailDelivery = async (req, res)=>{
+    try {
+        var data=[]
+        let wedding = await db.collection('bodas').doc(req.params.id)
+        if((await wedding.get()).exists){
+            let delivery = await wedding.collection('deliveries').doc(req.params.idDelivery).get()
+            data.push({
+                id:delivery.id,...delivery.data()
+            })
+            res.send(data)
+        }
+        else{
+            res.send({
+                code:404,
+                data:'Document not found'
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 module.exports = controller
