@@ -47,6 +47,7 @@ const weddings = require('./routes/weddings')
 const employee = require('./routes/employee')
 const indications = require('./routes/indications')
 const delivery = require('./routes/Deliveries')
+const stores = require('./routes/Stores')
 //middlewares
 app.use(cors())
 app.use(bodyparser.json()); 
@@ -61,6 +62,7 @@ app.use('/employee',employee)
 app.use('/weddings',weddings)
 app.use('/indications',indications)
 app.use('/delivery',delivery)
+app.use('/stores',stores)
 
 //init app
 app.listen(port, function () {

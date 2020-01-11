@@ -291,6 +291,11 @@ controller.createDelivery = async(req, res)=>{
                         count:req.body.count,
                         date: dateString,
                         productId:req.body.product,
+                        preference:req.body.preference,
+                        preferenceChecked:req.body.Preferencechecked,
+                        methodPayment:req.body.method,
+                        methodPaymentChecked:req.body.Methodchecked
+
                     })
 
                     const newstock = countTable-parseInt(req.body.count)
