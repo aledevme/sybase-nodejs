@@ -269,7 +269,7 @@ controller.updateLocation = async(req, res) => {
 controller.createDelivery = async(req, res)=>{
     try {
 
-        console.log(req.body)
+        
         let wedding = await db.collection('bodas').doc(req.body.id).get()
         if(wedding.exists){
             let deliveries = await db.collection('bodas').doc(req.body.id).collection('deliveries')
@@ -285,6 +285,7 @@ controller.createDelivery = async(req, res)=>{
                     })
                 }
                 else{   
+                    console.log(req.body)
                     console.log('llego hasta aqui')
                     const result = deliveries.add({
                         nameClient:req.body.nameClient,
