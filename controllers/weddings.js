@@ -277,28 +277,30 @@ controller.createDelivery = async(req, res)=>{
             var dateString = moment(now).format('YYYY-MM-DD');
             const countTable = (await product.get()).data().count
             if(countTable > 0){
-                if(countTable < req.body.count){
+                if(countTable < req.body.countSail){
                     res.send({
                         stock:false,
                         data:'Stock insufficient'
                     })
                 }
                 else{   
-                    
                     const result = deliveries.add({
                         nameClient:req.body.nameClient,
                         lastnameClient:req.body.lastnameClient,
-                        count:req.body.count,
                         date: dateString,
                         productId:req.body.product,
                         preference:req.body.preference,
                         preferenceChecked:req.body.Preferencechecked,
                         methodPayment:req.body.method,
-                        methodPaymentChecked:req.body.Methodchecked
-
+                        methodPaymentChecked:req.body.Methodchecked,
+                        store:req.body.store,
+                        countSail:req.body.countSail,
+                        price:req.body.price,
+                        discount:req.body.discount,
+                        total:req.body.total
                     })
 
-                    const newstock = countTable-parseInt(req.body.count)
+                    const newstock = countTable-parseInt(req.body.countSail)
                     
                     product.update({
                         'count':newstock
