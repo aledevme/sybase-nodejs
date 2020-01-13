@@ -268,40 +268,26 @@ controller.updateLocation = async(req, res) => {
 }
 controller.createDelivery = async(req, res)=>{
     try {
-        console.log(req.body.data.id)
         let wedding = await db.collection('bodas').doc(req.body.id).get()
         if(wedding.exists){
             let deliveries = await db.collection('bodas').doc(req.body.id).collection('deliveries')
-            let product = await db.collection('bodas').doc(req.body.id).collection('products').doc(req.body.product)
+            let product = await db.collection('bodas').doc(req.body.id).collection('products').doc(req.body.productId)
             var now = new Date();
             var dateString = moment(now).format('YYYY-MM-DD');
             const countTable = (await product.get()).data().count
             if(countTable > 0){
-                if(countTable < req.body.countSail){
+                if(parseInt(countTable) < parseInt(req.body.countSail)){
+                    console.log(countTable)
                     res.send({
                         stock:false,
                         data:'Stock insufficient'
                     })
                 }
                 else{   
-                    console.log(req.body)
                     console.log('llego hasta aqui')
-                    const result = deliveries.add({
-                        nameClient:req.body.nameClient,
-                        lastnameClient:req.body.lastnameClient,
-                        date: dateString,
-                        productId:req.body.product,
-                        preference:req.body.preference,
-                        preferenceChecked:req.body.Preferencechecked,
-                        methodPayment:req.body.method,
-                        methodPaymentChecked:req.body.Methodchecked,
-                        store:req.body.store,
-                        countSail:req.body.countSail,
-                        price:req.body.price,
-                        discount:req.body.discount,
-                        total:req.body.total
-                    })
-
+                    delete req.body.id
+                    console.log(req.body)
+                    const result = deliveries.add(req.body)
                     const newstock = countTable-parseInt(req.body.countSail)
                     
                     product.update({
