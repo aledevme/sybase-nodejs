@@ -286,6 +286,7 @@ controller.createDelivery = async(req, res)=>{
                 else{   
                     console.log('llego hasta aqui')
                     delete req.body.id
+                    req.body.date = dateString
                     console.log(req.body)
                     const result = deliveries.add(req.body)
                     const newstock = countTable-parseInt(req.body.countSail)
@@ -346,7 +347,7 @@ controller.detailDelivery = async (req, res)=>{
         if((await wedding.get()).exists){
             let delivery = await wedding.collection('deliveries').doc(req.params.idDelivery).get()
             data.push({
-                id:delivery.id,...delivery.data()
+                id:delivery.id, ...delivery.data()
             })
             res.send(data)
         }
