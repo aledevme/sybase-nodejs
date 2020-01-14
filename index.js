@@ -11,31 +11,8 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://reactnative-27c72.firebaseio.com"
 });
-/*let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    requireTLS: true,
-    auth: {
-        user: 'popmoviesshop@gmail.com',
-        pass: 'shopOnline@2019$'
-    }
-});
 
-let mailOptions = {
-    from: 'popmoviesshop@gmail.com',
-    to: 'alexgve7@gmail.com',
-    subject: 'Test',
-    text: 'Hello World!'
-};
 
-transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-        return console.log(error.message);
-    }
-    console.log('success');
-});
-*/
 
 //init app
 const app = express()
