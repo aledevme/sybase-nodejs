@@ -9,7 +9,7 @@ var admin = require("firebase-admin");
 var serviceAccount = './token.json'
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://reactnative-27c72.firebaseio.com"
+  //your database url
 });
 
 
